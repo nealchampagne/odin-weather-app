@@ -1,39 +1,46 @@
-import { getWeather } from './getweather.js'
+import { clearChildren } from './clearchildren.js';
+import { currentWeatherLoad } from './currentload.js';
+import { getCurrentWeather } from './getcurrentweather.js'
 import cloudyeveningsky from './images/backgrounds/cloudyeveningsky.jpg';
 
 export const homeLoad = async () => {
-  const content = document.getElementById('content');
+
   const container = document.getElementById('container');
+  const content = document.getElementById('content');
+  const title = document.createElement('div');
+  const searchContainer = document.createElement('div');
+  const searchIcon = document.createElement('div');
   const search = document.createElement('input');
   const searchBtn = document.createElement('button');
-  const data = document.createElement('div');
-  const description = document.createElement('div');
-  const temperatureF = document.createElement('div');
-  const temperatureC = document.createElement('div');
+
+  
+  clearChildren(content);
 
   container.style.background = `url(${cloudyeveningsky})`;
   container.style.backgroundPosition = 'center';
-  container.style.backgroundSize = '3500px'
+  container.style.backgroundSize = '4000px'
+
+  title.classList.add('title');
+  searchContainer.classList.add('searchcontainer');
+  searchIcon.classList.add('searchicon');
   search.className = 'search';
   searchBtn.className = 'searchbtn';
 
+  title.textContent = 'Odin Weather App';
+  searchIcon.textContent = 'Search';
   searchBtn.textContent = 'Get Current Weather';
 
-  description.classList.add('text');
-  temperatureF.classList.add('datafield');
-  temperatureC.classList.add('datafield');
+  
 
   searchBtn.addEventListener('click', async () => {
-    const weatherData = await getWeather(search.value);
-    data.textContent = JSON.stringify(weatherData.currentConditions);
-    description.textContent = weatherData.description;
-    temperatureF.textContent = `Temperature (°F):  ${weatherData.currentConditions.temp}`;
-    temperatureC.textContent = `Temperature (°C):  ${Math.round((weatherData.currentConditions.temp - 32) * (5/9) * 10) / 10}`;
-    content.appendChild(description);
-    content.appendChild(temperatureF);
-    content.appendChild(temperatureC);
+    const weatherData = await getCurrentWeather(search.value);
+    currentWeatherLoad(weatherData);
   });
 
-  content.appendChild(search);
+
+  content.appendChild(title);
+  content.appendChild(searchContainer);
+  searchContainer.appendChild(searchIcon);
+  searchContainer.appendChild(search);
   content.appendChild(searchBtn);
 };
