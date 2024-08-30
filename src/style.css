@@ -2,6 +2,17 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Material Icons';
+  src: url('./fonts/MaterialSymbolsRounded-VariableFont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --page-font: 'Helvetica', 'Arial', sans-serif
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -22,7 +33,7 @@ body {
   height: 40rem;
   width: 60rem;
   display: grid;
-  grid-template-rows: repeat(auto-fit, max-content);
+  grid-template-rows: 5rem repeat(auto-fit, max-content);
   justify-items: center;
   align-items: center;
   gap: 1rem;
@@ -30,13 +41,42 @@ body {
   border-radius: 1rem;
 }
 
+.currentview {
+  grid-template-rows: 5rem 10rem repeat(auto-fit, max-content);
+  height: max-content;
+}
+
+.title {
+  font-family: var(--page-font);
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+.searchcontainer {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.searchicon {
+  font-family: 'Material Icons';
+  font-size: 1.5rem;
+  margin-right: -4rem;
+  z-index: 1;
+}
+
 .search {
+  appearance: none;
   align-self: end;
   border: none;
   border-radius: 0.25rem;
   height: 2rem;
   width: 25rem;
-  padding: 0.25rem 0.75rem;
+  background: white;
+  color: black;
+  padding: 0.25rem 0.75rem 0.25rem 2rem;
+  overflow-x: auto;
 }
 
 .search:focus-visible {
@@ -55,4 +95,32 @@ body {
 
 .searchbtn:hover {
   cursor: pointer;
+}
+
+.quickview {
+  width: 30rem;
+  display: grid;
+  grid-template-columns: 10rem 10rem 10rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.icon {
+  height: 8rem;
+  width: 8rem;
+}
+
+.fahrenheit, .celsius {
+  font-family: var(--page-font);
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.fahrenheit {
+  font-size: 3rem;
+}
+
+.data {
+  width: 40rem;
+  overflow: auto;
 }
