@@ -307,7 +307,7 @@ body {
   #container {
     overflow-y: auto;
   }
-  
+
   #content, #content.currentview {
     height: 100vh;
     width: 100vw;
@@ -315,6 +315,7 @@ body {
   }
 
   .tenday {
+    grid-template-columns: none;
     grid-template: repeat(2, 1fr) / repeat (5, 1fr);
   }
 }
