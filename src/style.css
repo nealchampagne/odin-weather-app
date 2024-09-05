@@ -21,40 +21,76 @@ body {
 }
 
 #container {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   display: grid;
   justify-items: center;
   align-items: center;
+  overflow: hidden;
 }
 
+/* Main content area */
 #content {
-  background: hsla(189, 90%, 40%, 0.5);
   height: 40rem;
   width: 60rem;
   display: grid;
-  grid-template-rows: 5rem repeat(auto-fit, max-content);
   justify-items: center;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
   padding: 2rem;
+  background: hsla(189, 90%, 40%, 0.65);
   border-radius: 1rem;
 }
 
-.currentview {
-  grid-template-rows: 5rem 10rem repeat(auto-fit, max-content);
+/* Styled for displaying current weather */
+#content.currentview {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   height: max-content;
+  width: max-content;
+}
+
+.topcontainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3rem 1fr 3rem;
+  justify-items: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.backbutton {
+  justify-self: start;
+  align-self: start;
+  border: none;
+  background: none;
+  font-family: 'Material Icons';
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.backbutton:hover {
+  cursor: pointer;
 }
 
 .title {
+  align-self: end;
   font-family: var(--page-font);
   font-weight: 600;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
+.currentview .title {
+  align-self: center;
+  font-size: 3rem;
+  text-align: center;
+}
+
+/* Search fields styling */
 .searchcontainer {
   display: grid;
-  grid-template-columns: 2rem 1fr;
+  grid-template-columns: 2rem 1fr 2rem;
   align-items: center;
   justify-items: center;
 }
@@ -97,12 +133,71 @@ body {
   cursor: pointer;
 }
 
-.quickview {
-  width: 30rem;
+/* Error styling */
+.errormodal {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: max-content;
+  width: max-content;
   display: grid;
-  grid-template-columns: 10rem 10rem 10rem;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  align-items: end;
+  gap: 1rem;
+  padding: 2rem 2rem 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  background: hsl(0, 90%, 60%);
+}
+
+.errormessage {
+  font-family: var(--page-font);
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.closeerror {
+  background: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: red;
+  font-family: var(--page-font);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Loading styling */
+.loadingmessage {
+  font-family: var(--page-font);
+  font-size: 3rem;
+}
+
+/* Data field styling for current weather */
+.datetime {
+  font-size: 1rem;
+  font-family: var(--page-font);
+  font-weight: 600;
+}
+
+.quickview {
+  width: max-content;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
   justify-items: center;
   align-items: center;
+  gap: 1.5rem;
+}
+
+.iconcontainer {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .icon {
@@ -110,9 +205,15 @@ body {
   width: 8rem;
 }
 
+.icontext {
+  font-family: var(--page-font);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 .fahrenheit, .celsius {
   font-family: var(--page-font);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 2rem;
 }
 
@@ -120,7 +221,91 @@ body {
   font-size: 3rem;
 }
 
+.description {
+  margin-top: 1rem;
+}
+
+.datacontainer {
+  width: 100%;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.datafield, .description {
+  white-space: pre;
+  text-align: center;
+  line-height: 1.5rem;
+  font-family: var(--page-font);
+  font-weight: 700;
+}
+
+/* 10-day forecast styling */
+.tenday {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(10, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dailycontainer {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dailydate {
+  font-family: var(--page-font);
+  font-weight: 700;
+}
+
+.dailyicon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.tempcontainer {
+  display: grid;
+  grid-template: 1fr 1fr / max-content max-content;
+  font-family: var(--page-font);
+  gap: 0.5rem;
+}
+
+.dailyf {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.dailyc {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.high {
+  color: hsl(0, 74%, 31%);
+}
+
+.low {
+  color: hsl(240, 71%, 27%);
+}
+
 .data {
   width: 40rem;
   overflow: auto;
 }
+
+/* Mobile styling */
+@media only screen 
+and (max-device-width: 600px)
+ {
+  #content {
+    height: 100vh;
+    width: 100vw;
+  }
+ }
