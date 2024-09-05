@@ -76,6 +76,7 @@ body {
 
 .title {
   align-self: end;
+  text-align: center;
   font-family: var(--page-font);
   font-weight: 600;
   font-size: 4rem;
@@ -84,7 +85,6 @@ body {
 .currentview .title {
   align-self: center;
   font-size: 3rem;
-  text-align: center;
 }
 
 /* Search fields styling */
