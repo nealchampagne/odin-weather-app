@@ -5,19 +5,19 @@ import { homeLoad } from "./homeload";
 export const handleError = (err) => {
   console.error(err);
 
-  const content = document.getElementById('content');
+  const content = document.getElementById("content");
 
-  const modal = document.createElement('div');
-  const close = document.createElement('button');
-  const errorMessage = document.createElement('div');
+  const modal = document.createElement("div");
+  const close = document.createElement("button");
+  const errorMessage = document.createElement("div");
 
   clearChildren(content);
 
-  modal.classList.add('errormodal');
-  close.classList.add('closeerror');
-  errorMessage.classList.add('errormessage');
+  modal.classList.add("errormodal");
+  close.classList.add("closeerror");
+  errorMessage.classList.add("errormessage");
 
-  close.textContent = 'Back';
+  close.textContent = "Back";
   errorMessage.textContent = err;
 
   content.appendChild(modal);
@@ -25,7 +25,7 @@ export const handleError = (err) => {
   modal.appendChild(close);
 
   // Take user back to the search page after closing the error modal
-  close.addEventListener('click', () => {
+  close.addEventListener("click", () => {
     modal.remove();
     homeLoad();
   });
