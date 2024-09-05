@@ -307,5 +307,6 @@ body {
   #content, #content.currentview {
     height: 100vh;
     width: 100vw;
+    overflow: auto;
   }
 }
