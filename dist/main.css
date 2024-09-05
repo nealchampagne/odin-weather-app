@@ -316,6 +316,6 @@ body {
 
   .tenday {
     grid-template-columns: none;
-    grid-template: repeat(2, 1fr) / repeat (5, 1fr);
+    grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
   }
 }
