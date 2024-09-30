@@ -8,7 +8,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      title: "To-Do",
+      title: "Odin-Weather",
     }),
     new MiniCssExtractPlugin(),
   ],
